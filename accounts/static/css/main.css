@@ -3,7 +3,7 @@ body {
 	overflow-x: hidden; /*Prevent sideways scroll on narrow screens*/
 	background-color: #CAD9DF;
 	font-family: 'Maven Pro', sans-serif;
-	font-size: 14px;
+	font-size: 18px;
 	color: #555;
 }
 .container-fluid {
@@ -34,9 +34,6 @@ h1, h2 {
 	font-family: 'Libre Baskerville', serif;
 	font-size: 40px;
 	font-weight: bold;
-}
-h2 {
-	text-transform: uppercase;
 }
 
 /*Devicons size*/

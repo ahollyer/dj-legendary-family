@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center">
+  <h1>Register</h1>
+  <p>Create an account to RSVP for the reunion. You'll also gain access to a discussion board and archive of family photos.</p>
+</div>
+
+<div class="row">
+<div class="col-sm-8 col-sm-offset-2 col-md-5 col-md-offset-4">
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-default" type="submit">Register</button>
+  </form>
+</div><!-- .col -->
+</div><!-- .row -->
+{% endblock %}

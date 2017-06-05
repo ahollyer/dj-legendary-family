@@ -11,101 +11,12 @@
       <!-- .col -->
 			<div class="col-xs-12 col-md-10 col-md-offset-1">
         <h3>This summer, experience everything that makes our family awesome. We don't know if this much greatness can fit in one place, but we're going to try.<br><br>
-        Join us July 22nd at Lake Thunderbird for fellowship, food, and fun.</h3><br><br>
+        Join us July 22nd at Lake Thunderbird for fellowship, food, and fun. <a href="#reg">RSVP here</a>.</h3><br><br>
       </div>
       <div class="col-xs-12 col-md-10 col-md-offset-1 text-center">
         <h1><span id="one" class="fades">The family.</span><span id="two" class="fades"> The legend.</span><span id="three" class="fades"> The legendary family.</span></h1>
 			</div>
 			<!-- .col -->
-		</div>
-		<!-- .row -->
-
-		<a name="rsvp"></a>
-		<div class="row rsvp">
-			<div class="col-xs-12 col-md-8 col-md-offset-2">
-				<h2 class="text-center">RSVP</h2>
-				<p class="text-center">July 22nd-23rd, we've got a spot at <a href="http://calypsocovemarina.com/" target="blank">Calypso Cove Marina</a>. We'll be hanging out by the lake all weekend. RSVP here for details!</p>
-				<form action="/" method="POST" id="rsvp-form" class="form-horizontal">
-					{% csrf_token %}
-					{{ form.as_p }}
-				  <div class="form-group">
-				    <label for="rsvp-name" class="col-sm-2 col-md-1 col-md-offset-2 control-label">Name</label>
-				    <div class="col-sm-10 col-md-6">
-				      <input type="text" class="form-control" placeholder="Name" id="rsvp-name">
-				    </div>
-				  </div><!-- .form-group -->
-
-					<div class="form-group">
-						<label for="rsvp-email" class="col-sm-2 col-md-1 col-md-offset-2 control-label">Email</label>
-						<div class="col-sm-10 col-md-6">
-							<input type="email" class="form-control" placeholder="Email" id="rsvp-email">
-						</div>
-					</div><!-- .form-group -->
-
-					<div class="form-group">
-						<label class="col-sm-2 col-md-1 col-md-offset-2 control-label">RSVP</label>
-						<div class="radio col-sm-10 col-md-6">
-						  <label>
-						    <input type="radio" name="optionsRadios" id="rsvp-yes" value="option1" checked>
-								Yes
-							</label>
-						</div>
-						<div class="radio col-sm-10 col-md-6 col-md-offset-3">
-						  <label>
-						    <input type="radio" name="optionsRadios" id="rsvp-no" value="option2">
-								No
-							</label>
-						</div>
-					</div><!-- .form-group -->
-
-					<div class="form-group">
-				    <div class="col-sm-offset-3 col-sm-10">
-							<button id="submit-button" class="btn btn-default" type="submit" form="rsvp-form" value="Submit">Submit</button>
-				    </div>
-				  </div><!-- .form-group -->
-
-				</form>
-			</div><!-- .col -->
-		</div><!-- .row -->
-
-		<a name="login"></a>
-		<div class="row">
-			<div class="col-xs-12 col-md-10 col-md-offset-1 text-center">
-				<h2>Log In</h2>
-        <p>Log in to view shared pictures, stories, and videos!</p>
-        <p style="color: #FF7043"><em><strong>Coming soon.</strong></em></p>
-      </div>
-      <div class="col-xs-10 col-xs-offset-1 col-md-2 col-md-offset-5">
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label for="login-user" class="control-label">Username</label>
-            <div>
-              <input type="text" class="form-control" id="login-user" placeholder="username">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="login-pass" class="control-label">Password</label>
-            <div>
-              <input type="password" class="form-control" id="login-pass" placeholder="password">
-            </div>
-          </div>
-          <div class="form-group">
-            <div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Remember me
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div>
-              <button type="submit" class="btn btn-default">Sign in</button>
-            </div>
-          </div>
-        </form>
-			</div>
-      <!-- .col -->
 		</div>
 		<!-- .row -->
 
