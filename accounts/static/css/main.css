@@ -1,0 +1,213 @@
+body {
+	/*padding: 50px 0 0 0; /*Add space so fixed navbar doesn't overlap*/
+	overflow-x: hidden; /*Prevent sideways scroll on narrow screens*/
+	background-color: #CAD9DF;
+	font-family: 'Maven Pro', sans-serif;
+	font-size: 14px;
+	color: #555;
+}
+.container-fluid {
+	padding: 0;
+}
+.about {
+	height: 100vh;
+}
+.rsvp, .contact {
+	background-color: #fafafa;
+	color: #555;
+}
+.center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.valign {
+	display: flex;
+	align-items: baseline;
+}
+.caption {
+	padding-bottom: 80px;
+}
+h1, h2 {
+	padding-top: 0;
+	margin-top: 0;
+	font-family: 'Libre Baskerville', serif;
+	font-size: 40px;
+	font-weight: bold;
+}
+h2 {
+	text-transform: uppercase;
+}
+
+/*Devicons size*/
+.technologies-list {
+	font-size: 35px;
+}
+
+/*Space between sections*/
+.row {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.jumbotron {
+	margin-top: 50px;
+}
+
+/*Customize links*/
+a {
+	color: #657691 !important;
+}
+a:hover {
+	color: #FF7043 !important;
+	text-decoration: none;
+}
+#contacts li {
+	display: inline-block;
+	padding: 2px 10px;
+}
+
+/*Tagline animation*/
+@keyframes fades {
+	to {opacity: 1;}
+}
+#one {
+		opacity: 0;
+    animation: fades 0.5s ease forwards;
+		animation-delay: 1.5s;
+}
+#two {
+		opacity: 0;
+		animation: fades 0.5s ease forwards;
+		animation-delay: 3.0s;
+}
+#three {
+		opacity: 0;
+		animation: fades 0.5s ease forwards;
+		animation-delay: 4.5s;
+}
+
+/*Customize navbar*/
+.navbar {
+	padding-left: 10px;
+	margin-bottom: 0 !important;
+	border: 0;
+}
+.navbar-brand {
+	font-family: 'Libre Baskerville', serif;
+    font-size: 24px;
+}
+.navbar-container {
+    padding: 20px 0 20px 0;
+}
+.navbar.navbar-fixed-top.fixed-theme {
+    background-color: #A4B9C5;
+    border-color: #080808;
+    box-shadow: 0 0 5px rgba(0,0,0,.8);
+}
+.navbar-brand.fixed-theme {
+    font-size: 16px;
+}
+.navbar-container.fixed-theme {
+    padding: 0;
+}
+.navbar-brand.fixed-theme,
+.navbar-container.fixed-theme,
+.navbar.navbar-fixed-top.fixed-theme,
+.navbar-brand,
+.navbar-container{
+    transition: 0.8s;
+    -webkit-transition:  0.8s;
+    -moz-transition: 0.8s;
+    -o-transition: 0.8s;
+}
+
+/*Custom colors for navbar*/
+.navbar-default {
+  background-color: #CAD9DF;
+  border-color: #CAD9DF;
+}
+.navbar-default .navbar-brand {
+  color: #fafafa;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #212121;
+}
+.navbar-default .navbar-text {
+  color: #212121;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #212121;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #fe5722;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu {
+  background-color: #689e38;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+  color: #fafafa;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+  color: #ffbe0b;
+  background-color: #CAD9DF;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
+  background-color: #CAD9DF;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+  color: #ffbe0b;
+  background-color: #CAD9DF;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #ffbe0b;
+  background-color: #CAD9DF;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #ffbe0b;
+  background-color: #CAD9DF;
+}
+.navbar-default .navbar-toggle {
+  border-color: #CAD9DF;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #CAD9DF;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fafafa;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #fafafa;
+}
+.navbar-default .navbar-link {
+  color: #fafafa;
+}
+.navbar-default .navbar-link:hover {
+  color: #ffbe0b;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #fafafa;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ffbe0b;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ffbe0b;
+    background-color: #CAD9DF;
+  }
+}

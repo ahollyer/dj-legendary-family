@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Log In to View Photos{% endblock %}
+{% block content %}
+<div class="jumbotron text-center">
+  <h1>Welcome</h1>
+  <p>Sign in to view shared pictures, stories, and videos!</p>
+</div>
+
+<div class="row">
+<div class="text-center">
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-default" type="submit">Login</button>
+  </form>
+</div><!-- .col -->
+</div><!-- .row -->
+{% endblock %}
