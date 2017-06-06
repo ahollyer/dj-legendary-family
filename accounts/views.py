@@ -5,14 +5,8 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
-def home(request):
-    numbers = [1, 2, 3, 4, 5]
-    name = 'Aspen'
-    context = {
-        'name': name,
-        'numbers': numbers,
-    }
-    return render(request, 'accounts/home.html', context)
+# def home(request):
+#     return render(request, 'accounts/home.html', context)
 
 def register(request):
     if request.method == 'POST':
