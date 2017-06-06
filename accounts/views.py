@@ -27,7 +27,6 @@ def register(request):
             'form': form
         }
         return render(request, 'accounts/reg_form.html', context)
-
 @login_required
 def view_profile(request):
     context = {
