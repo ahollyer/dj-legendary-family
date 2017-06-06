@@ -12,10 +12,6 @@ body {
 .about {
 	height: 100vh;
 }
-.rsvp, .contact {
-	background-color: #fafafa;
-	color: #555;
-}
 .center-block {
 	display: block;
 	margin-left: auto;

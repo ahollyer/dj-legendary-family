@@ -12,7 +12,10 @@
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn btn-primary" type="submit" name="submit">Submit Changes</button>
+    <button class="btn btn-lg btn-primary" type="submit" name="submit">Submit Changes</button>
+    <a href="{% url 'view_profile' %}">
+      <button class="btn btn-lg btn-danger" name="cancel">Cancel</button>
+    </a>
   </form>
 </div><!-- .col -->
 </div><!-- .row -->

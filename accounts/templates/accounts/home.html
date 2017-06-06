@@ -3,7 +3,6 @@
 {% load static %}
 
 	<div class="container-fluid">
-		<a name="about"></a>
 		<div class="row about">
       <div class="col-xs-12">
         <img src="{% static 'img/family_banner.png'%}" class="img-responsive center-block">
@@ -11,7 +10,7 @@
       <!-- .col -->
 			<div class="col-xs-12 col-md-10 col-md-offset-1">
         <h3>This summer, experience everything that makes our family awesome. We don't know if this much greatness can fit in one place, but we're going to try.<br><br>
-        Join us July 22nd at Lake Thunderbird for fellowship, food, and fun. <a href="#reg">RSVP here</a>.</h3><br><br>
+        Join us July 22nd at Lake Thunderbird for fellowship, food, and fun. <a href="{% url 'register' %}">RSVP here</a>.</h3><br><br>
       </div>
       <div class="col-xs-12 col-md-10 col-md-offset-1 text-center">
         <h1><span id="one" class="fades">The family.</span><span id="two" class="fades"> The legend.</span><span id="three" class="fades"> The legendary family.</span></h1>
