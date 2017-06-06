@@ -120,8 +120,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-LOGIN_REDIRECT_URL = '/account/profile/'
-LOGIN_URL = '/account/login/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'app/media')
 
-EMAIL_HOUST = 'localhost'
+LOGIN_URL = '/account/login/'
+LOGIN_REDIRECT_URL = '/account/profile/'
+
+EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025

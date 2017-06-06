@@ -7,17 +7,26 @@
 </div>
 
 <div class="row">
-<div class="col-xs-12 col-md-8 col-md-offset-2">
-  <h2>Your Profile</h2>
-  <ul class="list-group">
-    <li class="list-group-item"><strong>Username:</strong> {{ user }}</li>
-    <li class="list-group-item"><strong>Password:</strong> <em>hidden</em></li>
-    <li class="list-group-item"><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</li>
-    <li class="list-group-item"><strong>E-mail:</strong> {{ user.email }}</li>
-  </ul>
-  <a href="{% url 'edit_profile' %}">
-    <button class="btn btn-lg btn-primary" name="edit">Edit Information</button>
-  </a>
-</div><!-- .col -->
+  <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+    <h2>Profile</h2>
+  </div>
+  <div class="col-xs-12 col-md-2 col-md-offset-2">
+    <img src="{{ user.userprofile.image.url }}" alt="{{user.first_name}}'s profile pic'" width="240">
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Username:</strong> {{ user }}</li>
+      <li class="list-group-item"><strong>Password:</strong> <em>hidden</em></li>
+      <li class="list-group-item"><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</li>
+      <li class="list-group-item"><strong>E-mail:</strong> {{ user.email }}</li>
+      <li class="list-group-item"><strong>Description:</strong> {{ user.userprofile.description }}</li>
+      <li class="list-group-item"><strong>City:</strong> {{ user.userprofile.city }}</li>
+      <li class="list-group-item"><strong>Website:</strong> <a href="{{ user.userprofile.website }}" target="blank">{{ user.userprofile.website }}</a></li>
+      <li class="list-group-item"><strong>Birthday:</strong> {{ user.userprofile.birthday }}</li>
+    </ul>
+    <a href="{% url 'edit_profile' %}">
+      <button class="btn btn-lg btn-primary" name="edit">Edit Information</button>
+    </a>
+  </div><!-- .col -->
 </div><!-- .row -->
 {% endblock %}
