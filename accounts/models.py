@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 
 # Methods for querying data
 # class UserProfileManager(models.Manager):
-    # When you want to sort users by city
+    # When I want to sort users by city
     # def get_queryset(self):
     #     queryset = super(UserProfileManager, self).get_queryset()
     #     queryset = queryset.order_by('-city', 'user') # OR....
@@ -19,7 +19,7 @@ class UserProfile(models.Model):
     birthday = models.DateField(default='mm/dd/yyyy')
     image = models.ImageField(upload_to='profile_img', blank=True)
 
-    # london = UserProfileManager()
+    # city_sort = UserProfileManager()
 
     def __str__(self):
         return self.user.username

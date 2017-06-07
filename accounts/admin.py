@@ -2,7 +2,7 @@ from django.contrib import admin
 from accounts.models import UserProfile
 
 # Register your models here.
-admin.site.site_header = 'Administration for Legendary.family'
+admin.site.site_header = 'Admin Site for Legendary.family'
 admin.site.site_title = 'Legendary.family Admin'
 
 class UserProfileAdmin(admin.ModelAdmin):

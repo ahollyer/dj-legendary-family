@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
+from django.template.response import TemplateResponse
+from django.urls import reverse
 
-# Create your views here.
+def home_redirect(request):
+    return redirect(reverse('main:home'))
+
+def home(request):
+    return TemplateResponse(request, 'main/home.html', {})

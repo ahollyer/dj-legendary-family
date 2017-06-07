@@ -24,7 +24,7 @@
       <li class="list-group-item"><strong>Website:</strong> <a href="{{ user.userprofile.website }}" target="blank">{{ user.userprofile.website }}</a></li>
       <li class="list-group-item"><strong>Birthday:</strong> {{ user.userprofile.birthday }}</li>
     </ul>
-    <a href="{% url 'edit_profile' %}">
+    <a href="{% url 'accounts:edit_profile' %}">
       <button class="btn btn-lg btn-primary" name="edit">Edit Information</button>
     </a>
   </div><!-- .col -->
