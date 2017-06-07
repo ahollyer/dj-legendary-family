@@ -1,11 +1,8 @@
-from django.conf.urls import url
 from . import views
-from django.contrib.auth.views import (
-    login, logout,
-    password_reset, password_reset_done,
-    password_reset_confirm, password_reset_complete,
-)
+from django.conf.urls import url
+from main.views import MainView
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+    url(r'^main/', MainView.as_view(), name='main'),
 ]

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="jumbotron text-center">
+  <h1>{{ user.first_name }}'s News Feed</h1>
+  <p>See posts from family members.</p>
+</div>
+
+<div class="row">
+<div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+	<form method="POST">
+		{% csrf_token %}
+		{{ form }}
+		<button type="submit">Submit</button>
+	</form>
+	<h2>{{ text }}</h2>
+</div><!-- .col -->
+</div><!-- .row -->
+
+{% endblock %}
