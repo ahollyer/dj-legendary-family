@@ -32,6 +32,14 @@ h1, h2 {
 	font-weight: bold;
 }
 
+/* MAIN PAGE - NEWS FEED */
+div .posts {
+	margin-bottom: 20px;
+}
+.serif {
+	font-family: 'Libre Baskerville', serif;
+}
+
 /*Devicons size*/
 .technologies-list {
 	font-size: 35px;

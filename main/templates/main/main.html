@@ -8,14 +8,30 @@
 </div>
 
 <div class="row">
-<div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
-	<form method="POST">
-		{% csrf_token %}
-		{{ form }}
-		<button type="submit">Submit</button>
-	</form>
-	<h2>{{ text }}</h2>
-</div><!-- .col -->
+	<div class="col-xs-12 col-md-6 col-md-offset-3">
+		<form method="POST">
+			{% csrf_token %}
+			{{ form.post }}
+      <br>
+			<button class="btn btn-lg btn-primary" type="submit">Submit Post</button>
+      <a href="{% url 'main:main' %}">
+        <button class="btn btn-lg btn-danger">Cancel</button>
+      </a>
+		</form>
+	</div><!-- .col -->
+</div><!-- .row -->
+<div class="row">
+		{% for post in posts %}
+		<div class="col-xs-3 col-md-1 col-md-offset-3 posts">
+			<img src="{{ post.user.userprofile.image.url }}" alt="{{ post.user.first_name }}'s profile pic'" width="80">
+		</div>
+		<div class="col-xs-7 col-md-4 posts">
+			<h3 class="serif">{{ post.post }}</h3>
+			<p>Posted by {{ post.user.get_full_name }} on {{ post.created }}</p>
+	</div><!-- .col -->
+  <div class="hidden-sm-down col-md-4 posts"></div>
+  <div class="clearfix"></div>
+	{% endfor %}
 </div><!-- .row -->
 
 {% endblock %}

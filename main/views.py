@@ -3,6 +3,7 @@ from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.views.generic import TemplateView
 from main.forms import PostForm
+from main.models import Post
 
 def home(request):
     return TemplateResponse(request, 'main/home.html', {})
@@ -15,12 +16,16 @@ class MainView(TemplateView):
 
     def get(self, request):
         form = PostForm()
-        context = {'form': form}
+        posts = Post.objects.all().order_by('-created')
+        context = {'form': form, 'posts': posts}
         return TemplateResponse(request, self.template_name, context)
 
     def post(self, request):
         form = PostForm(request.POST)
         if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
             text = form.cleaned_data['post']
             return redirect('main:main')
         context = {'form': form, 'text': text}

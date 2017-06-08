@@ -15,16 +15,12 @@ def register(request):
             return redirect(reverse('accounts:view_profile'))
     else:
         form = RegistrationForm()
-
-        context = {
-            'form': form
-        }
+        context = {'form': form}
         return TemplateResponse(request, 'accounts/reg_form.html', context)
+
 @login_required
 def view_profile(request):
-    context = {
-        'user': request.user,
-    }
+    context = {'user': request.user}
     return TemplateResponse(request, 'accounts/profile.html', context)
 
 @login_required
@@ -36,9 +32,7 @@ def edit_profile(request):
             return redirect(reverse('accounts:view_profile'))
     else:
         form = EditProfileForm(instance=request.user);
-        context = {
-            'form': form,
-        }
+        context = {'form': form}
         return TemplateResponse(request, 'accounts/edit_profile.html', context)
 
 @login_required
@@ -53,7 +47,6 @@ def change_password(request):
             return redirect(reverse('accounts:change_password'))
     else:
         form = PasswordChangeForm(user=request.user)
-        context = {
-            'form': form,
-        }
-        return TemplateResponse(request, 'accounts/change_password.html', context)
+        context = {'form': form,}
+        return TemplateResponse(request, 'accounts/change_password.html',
+            context)
