@@ -19,8 +19,12 @@ def register(request):
         return TemplateResponse(request, 'accounts/reg_form.html', context)
 
 @login_required
-def view_profile(request):
-    context = {'user': request.user}
+def view_profile(request, pk=None):
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+    context = {'user': user}
     return TemplateResponse(request, 'accounts/profile.html', context)
 
 @login_required

@@ -1,17 +1,26 @@
 {% extends 'base.html' %}
 {% block title %}Profile{% endblock %}
 {% block content %}
+{% load static %}
 <div class="jumbotron text-center">
+{% if user == request.user %}
   <h1>Welcome, {{ user.first_name }}.</h1>
   <p>Use this page to view and edit your personal information.</p>
+{% else %}
+  <h1>{{ user.first_name }}'s Profile</h1>
+{% endif %}
 </div>
 
 <div class="row">
   <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
-    <h2>Profile</h2>
+    <h2>User Information</h2>
   </div>
   <div class="col-xs-12 col-md-2 col-md-offset-2 text-center">
-    <img src="{{ user.userprofile.image.url }}" alt="{{user.first_name}}'s profile pic'" width="240">
+    {% if user.userprofile.image %}
+      <img src="{{ user.userprofile.image.url }}" alt="{{ user.first_name }}'s profile pic'" width="240">
+    {% else %}
+      <img src="{% static 'img/default-profile.png' %}" alt="{{ user.first_name }} hasn't uploaded a profile picture!" width="240">
+    {% endif %}
   </div>
   <div class="col-xs-12 col-md-6">
     <ul class="list-group">
@@ -24,9 +33,11 @@
       <li class="list-group-item"><strong>Website:</strong> <a href="{{ user.userprofile.website }}" target="blank">{{ user.userprofile.website }}</a></li>
       <li class="list-group-item"><strong>Birthday:</strong> {{ user.userprofile.birthday }}</li>
     </ul>
-    <a href="{% url 'accounts:edit_profile' %}">
-      <button class="btn btn-lg btn-primary" name="edit">Edit Information</button>
-    </a>
+    {% if user == request.user %}
+      <a href="{% url 'accounts:edit_profile' %}">
+        <button class="btn btn-lg btn-primary" name="edit">Edit Information</button>
+      </a>
+    {% endif %}
   </div><!-- .col -->
 </div><!-- .row -->
 {% endblock %}

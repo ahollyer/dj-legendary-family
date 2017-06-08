@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
@@ -17,7 +18,8 @@ class MainView(TemplateView):
     def get(self, request):
         form = PostForm()
         posts = Post.objects.all().order_by('-created')
-        context = {'form': form, 'posts': posts}
+        users = User.objects.all()
+        context = {'form': form, 'posts': posts, 'users': users}
         return TemplateResponse(request, self.template_name, context)
 
     def post(self, request):
