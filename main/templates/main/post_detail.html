@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Log In{% endblock %}
+{% block content %}
+{% load static %}
+<div class="jumbotron text-center">
+  <h1>Conversation</h1>
+  <p>This discussion was started by {{ post.user.first_name }} on {{ post.created }}</p>
+</div>
+
+<a name="comment-form"></a>
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <br>
+    <form action="./" method="POST">
+      {% csrf_token %}
+      {{ form.text }}
+      <br>
+      <button class="btn btn-lg btn-primary" type="submit">Add Comment</button>
+
+      <a href="{% url 'main:main' %}">
+        <button class="btn btn-lg btn-danger">Cancel</button>
+      </a>
+    </form>
+    <br><br>
+  </div><!-- .col -->
+  <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <div class="col-xs-2 col-md-1">
+      {% if post.user.userprofile.image %}
+        <img src="{{ post.user.userprofile.image.url }}" alt="profile pic'" height="80px">
+        {% else %}
+          <img src="{% static 'img/default-profile.png' %}" alt="default profile pic" height="80px">
+      {% endif %}
+    </div>
+    <div class="col-xs-9 col-md-10">
+      <span class="lead serif">{{ post.user.first_name }}:</span>
+      <p>{{ post.post }}</p>
+      <p class="small">{{ post.updated }}</p>
+      <br><br>
+    </div>
+    {% include 'main/comments.html' %}
+    <div class="col-xs-12">
+      <p><a href="#comment-form">Add A Comment</a></p>
+      <a href="{% url 'main:main' %}"><p class="text-center">Back to news feed</p></a>
+    </div>
+  </div><!-- .col -->
+</div><!-- .row -->
+{% endblock %}

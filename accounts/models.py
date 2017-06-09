@@ -16,7 +16,7 @@ class UserProfile(models.Model):
     description = models.CharField(max_length=800, default='Add a quick status update or bio here!')
     city = models.CharField(max_length=50, default='')
     website = models.URLField(default='')
-    birthday = models.DateField()
+    birthday = models.DateField(blank=True)
     image = models.ImageField(upload_to='profile_img', blank=True)
 
     # city_sort = UserProfileManager()
