@@ -13,10 +13,10 @@ from django.db.models.signals import post_save
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    description = models.CharField(max_length=800, default='Add a quick status update or bio here!')
-    city = models.CharField(max_length=50, default='')
-    website = models.URLField(default='')
-    birthday = models.DateField(blank=True)
+    description = models.TextField(max_length=1500, blank=True)
+    city = models.CharField(max_length=50, blank=True)
+    website = models.URLField(blank=True)
+    birthday = models.DateField(null=True, blank=True)
     image = models.ImageField(upload_to='profile_img', blank=True)
 
     # city_sort = UserProfileManager()

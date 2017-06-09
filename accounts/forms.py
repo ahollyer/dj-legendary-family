@@ -9,12 +9,10 @@ class RegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = (
-            "username",
-            "first_name",
-            "last_name",
-            "email",
-            "password1",
-            "password2"
+            'username',
+            'email',
+            'first_name',
+            'last_name'
         )
 
     def save(self, commit=True):
@@ -33,8 +31,24 @@ class EditProfileForm(UserChangeForm):
     class Meta:
         model = User
         fields = (
-            "email",
-            "first_name",
-            "last_name",
-            "password"
+            'email',
+            'first_name',
+            'last_name',
+            'password'
         )
+
+class UserInfoForm(forms.ModelForm):
+    description = forms.CharField(required=False, widget=forms.Textarea(
+        attrs = {
+            'class': 'form-control',
+            'placeholder': 'Enter a brief status, quote, bio, or whatever you want people to see about you!',
+        }
+    ))
+    city = forms.CharField(required=False)
+    website = forms.URLField(required=False)
+    birthday = forms.DateField(required=False)
+    image = forms.ImageField(required=False)
+
+    class Meta:
+        model = UserProfile
+        exclude = ('user',)

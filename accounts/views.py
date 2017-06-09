@@ -1,4 +1,4 @@
-from accounts.forms import RegistrationForm, EditProfileForm
+from accounts.forms import RegistrationForm, EditProfileForm, UserInfoForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -30,13 +30,18 @@ def view_profile(request, pk=None):
 @login_required
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect(reverse('accounts:view_profile'))
+        userform = EditProfileForm(request.POST, instance=request.user)
+        infoform = UserInfoForm(request.POST, instance=request.user.userprofile)
+        if userform.is_valid():
+            userform.save()
+        if infoform.is_valid():
+            infoform.user = request.user
+            infoform.save()
+        return redirect(reverse('accounts:view_profile'))
     else:
-        form = EditProfileForm(instance=request.user);
-        context = {'form': form}
+        userform = EditProfileForm(instance=request.user)
+        infoform = UserInfoForm(instance=request.user.userprofile)
+        context = {'userform': userform, 'infoform': infoform}
         return TemplateResponse(request, 'accounts/edit_profile.html', context)
 
 @login_required
