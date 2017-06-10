@@ -31,7 +31,7 @@ def view_profile(request, pk=None):
 def edit_profile(request):
     if request.method == 'POST':
         userform = EditProfileForm(request.POST, instance=request.user)
-        infoform = UserInfoForm(request.POST, instance=request.user.userprofile)
+        infoform = UserInfoForm(request.POST, request.FILES, instance=request.user.userprofile)
         if userform.is_valid():
             userform.save()
         if infoform.is_valid():
