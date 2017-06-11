@@ -24,7 +24,29 @@
       <span class="hidden">{{ userform.password }}</span>
       <em>hidden</em> <a href="{% url 'accounts:change_password' %}">(Change Password)</a>
     </div>
-    {{ infoform.as_p }}
+    <div class="form-group">
+      <label>Status/Bio:</label>
+      {{ infoform.description }}
+    </div>
+    <div class="form-group">
+      <label>City:</label>
+      {{ infoform.city }}
+      <p class="help-block"><small><em>Ex. Houston, TX</em></small></p>
+    </div>
+    <div class="form-group">
+      <label>Website:</label>
+      {{ infoform.website }}
+      <p class="help-block"><small><em>Include http://</em></small></p>
+    </div>
+    <div class="form-group">
+      <label>Birthday:</label>
+      {{ infoform.birthday }}
+      <p class="help-block"><small><em>MM/DD/YYYY</em></small></p>
+    </div>
+    <div class="form-group">
+      <label>Profile Picture:</label>
+      {{ infoform.image }}
+    </div>
     <button class="btn btn-lg btn-primary" type="submit" name="submit">Submit Changes</button>
     <a href="{% url 'accounts:view_profile' %}">
       <button class="btn btn-lg btn-danger" name="cancel">Cancel</button>
