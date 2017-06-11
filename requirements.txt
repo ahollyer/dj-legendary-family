@@ -1,4 +1,5 @@
 Django==1.11.2
+Pillow
 uwsgi
 fabric3
 whitenoise
