@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', 'dev')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '45.32.162.25',
@@ -135,5 +135,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'app/media')
 LOGIN_URL = '/account/login/'
 LOGIN_REDIRECT_URL = '/account/profile/'
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = 1025
