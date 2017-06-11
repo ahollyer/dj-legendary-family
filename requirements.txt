@@ -1,5 +1,7 @@
 Django==1.11.2
+boto3
+django-storages
+fabric3
 Pillow
 uwsgi
-fabric3
 whitenoise
