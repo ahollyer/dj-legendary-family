@@ -3,7 +3,7 @@ from fabric.api import run, env, sudo, cd, prefix
 env.hosts = ['45.32.162.25']
 env.user = 'aspen'
 
-DIR = '/home/aspen/dj-legendary-family/app'
+DIR = '/home/aspen/dj-legendary-family'
 VENV = 'source /home/aspen/.virtualenvs/legendary/bin/activate && source SECRETS.ENV'
 
 def start ():
