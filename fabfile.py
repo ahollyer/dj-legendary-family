@@ -4,7 +4,7 @@ env.hosts = ['45.32.162.25']
 env.user = 'aspen'
 
 DIR = '/home/aspen/dj-legendary-family'
-VENV = 'source /home/aspen/.virtualenvs/legendary/bin/activate && source SECRET.ENV'
+VENV = 'source /home/aspen/.virtualenvs/legendary/bin/activate && source SECRETS.ENV'
 
 def start ():
   with cd(DIR):
