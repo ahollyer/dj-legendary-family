@@ -24,6 +24,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'dev')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+if SECRET_KEY == 'dev':
+    DEBUG = True
 
 ALLOWED_HOSTS = [
     '45.32.162.25',
@@ -136,13 +138,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'app/media')
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static-compiled")
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_QUERYSTRING_AUTH = False
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
-MEDIA_URL = 'http://%s.s3.amazonaws.com/media.legendary.family/' % AWS_STORAGE_BUCKET_NAME
+if SECRET_KEY != 'dev':
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    #STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    AWS_QUERYSTRING_AUTH = False
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
+    MEDIA_URL = 'http://%s.s3.amazonaws.com/media.legendary.family/' % AWS_STORAGE_BUCKET_NAME
 
 # EMAIL_HOST = 'localhost'
 # EMAIL_PORT = 1025
