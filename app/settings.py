@@ -145,6 +145,7 @@ if SECRET_KEY != 'dev':
     AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY']
     AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
     AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
+    AWS_S3_REGION_NAME = 'us-west-2'
     MEDIA_URL = 'http://s3-us-west-2.amazonaws.com/media.legendary.family/'
 
 # EMAIL_HOST = 'localhost'
