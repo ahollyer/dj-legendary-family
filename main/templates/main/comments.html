@@ -1,8 +1,10 @@
 {% load static %}
 {% for comment in post.comments.all %}
   <div class="col-xs-2 col-xs-offset-1 col-md-1">
-    {% if post.user.userprofile.image %}
-      <img src="{{ post.user.userprofile.image.url }}" alt="profile pic'" height="80px">
+    {% if comment.user.userprofile.image %}
+    <a href="{% url 'accounts:view_profile_pk' pk=comment.user.pk %}">
+      <img src="{{ comment.user.userprofile.image.url }}" alt="profile pic'" height="80px">
+    </a>
     {% else %}
       <img src="{% static 'img/default-profile.png' %}" alt="default profile pic" height="80px">
     {% endif %}
