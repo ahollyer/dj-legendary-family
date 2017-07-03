@@ -32,6 +32,14 @@ h1, h2 {
 	font-weight: bold;
 }
 
+h3 {
+	padding-top: 0;
+	margin-top: 0;
+	font-family: 'Libre Baskerville', serif;
+	font-size: 30px;
+	font-weight: bold;
+}
+
 /* MAIN PAGE - NEWS FEED */
 div .posts {
 	margin-bottom: 20px;

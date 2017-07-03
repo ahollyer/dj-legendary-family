@@ -14,6 +14,10 @@ def home_redirect(request):
     return redirect(reverse('main:home'))
 
 @login_required
+def about(request):
+    return TemplateResponse(request, 'main/about.html', {})
+
+@login_required
 def photos(request):
     return TemplateResponse(request, 'main/photos.html', {})
 
@@ -22,6 +26,10 @@ def get_comments(request, post_id):
     return TemplateResponse(request, 'main/comments.html', {'comments': comments})
     # To create api and render on front end:
     # return http.JsonResponse({'comments': comments})
+
+@login_required
+def rsvp(request):
+    return TemplateResponse(request, 'main/rsvp.html', {})
 
 class MainView(TemplateView):
     template_name = 'main/main.html'
@@ -80,6 +88,6 @@ class PostView(TemplateView):
             comment.save()
             text = form.cleaned_data['text']
             return redirect('./')
-            
+
         context = {'form': form, 'text': text}
         return TemplateResponse(request, self.template_name, context)

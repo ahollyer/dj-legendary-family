@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Photos{% endblock %}
+{% block content %}
+<div class="jumbotron text-center">
+  <h1>Reunion Details</h1>
+  <p>For additional questions, just post on the <a href="{% url 'main:main' %}">discussion board</a>.</p>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <h3>When is this shindig?</h3>
+    <p>Saturday, July 22nd, all day long! We may want to hang out or grab a meal together on Friday and Sunday as well.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <h3>Where is it?</h3>
+    <p>Lake Thunderbird in Norman, Oklahoma. More specifically, we've got Calypso Cove Marina booked for the day. Click the image to open it in Google Maps.</p>
+
+    <a href="http://maps.google.com/?q=100+Calypso+Cove+Ave,Norman,OK+73026" target="_blank">
+      <img src="https://maps.googleapis.com/maps/api/staticmap?center=100+Calypso+Cove+Avenue,Norman,OK+73026&markers=color:red%7C100+Calypso+Cove+Avenue,Norman,OK+73026&size=600x400&zoom=13&key=AIzaSyAOO6WcU3r7-eFg-y2sqIhZWeg6FKYZYkk" alt="Static Map Image">
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <h3>What's the plan?</h3>
+    <p>We've got fish to fry, a couple of pontoon boats, and check out this sweet RV we rented! It's going to be a great time.</p>
+
+  <div class="col-xs-4">
+    <img class="img-responsive" src="{% static 'img/rv.jpg' %}" alt="RV picture">
+  </div>
+  <div class="col-xs-4">
+    <img class="img-responsive" src="{% static 'img/rv3.jpg' %}" alt="RV picture">
+  </div>
+  <div class="col-xs-4">
+    <img class="img-responsive" src="{% static 'img/rv2.jpg' %}" alt="RV picture">
+  </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <h3>What should I bring?</h3>
+    <p>Be ready for a day at the lake! Whatever that means to you and your family. Suggestions:</p>
+    <ul>
+      <li>sunscreen</li>
+      <li>bug spray</li>
+      <li>lawn chairs</li>
+      <li>towels</li>
+      <li>cooler/drinks</li>
+      <li>fishing gear</li>
+      <li>outdoor games</li>
+    </ul>
+  </div><!-- .col -->
+</div><!-- .row -->
+{% endblock %}
