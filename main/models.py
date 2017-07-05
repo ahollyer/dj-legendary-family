@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+############### POSTS/COMMENTS ##################
 class Post(models.Model):
     post = models.CharField(max_length=1000)
     user = models.ForeignKey(User)
@@ -26,6 +27,14 @@ class Like(models.Model):
     user = models.ForeignKey(User)
     post = models.ForeignKey(Post, related_name='likes')
 
+##################### RSVP #############################
+class Rsvp(models.Model):
+    name = models.CharField(max_length=50)
+    rsvp = models.BooleanField(default=True)
+    bringing = models.CharField(max_length=500)
+
+
+################## FAMILY ARCHIVE ###################
 class Photo(models.Model):
     user = models.ForeignKey(User)
     uploaded = models.DateTimeField(auto_now_add=True)

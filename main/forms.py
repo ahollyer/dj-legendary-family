@@ -1,6 +1,7 @@
 from django import forms
-from main.models import Post, Comment, Like
+from main.models import Post, Comment, Like, Rsvp
 
+################### POSTS/COMMENTS ################
 class PostForm(forms.ModelForm):
     post = forms.CharField(widget=forms.TextInput(
         attrs = {
@@ -31,3 +32,23 @@ class LikeForm(forms.ModelForm):
     class Meta:
         model = Like
         fields = ('like',)
+
+################### RSVPs ###################
+class RsvpForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(
+        attrs = {
+            'class': 'form-control input-lg',
+            'placeholder': 'Name'
+        }
+    ))
+    rsvp = forms.BooleanField(initial=True, required=False)
+    bringing = forms.CharField(widget=forms.TextInput(
+        attrs = {
+            'class': 'form-control input-lg',
+            'placeholder': 'Bringing anything cool? (food, games, etc.)'
+        }
+    ), required=False)
+
+    class Meta:
+        model = Rsvp
+        fields = ('name', 'rsvp', 'bringing')

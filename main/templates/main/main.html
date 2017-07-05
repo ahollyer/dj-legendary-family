@@ -60,7 +60,7 @@
                 <img src="{{ user.userprofile.image.url }}" alt="" height="50">
               {% endif %}
             {% endif %}
-            {{ user.username }}
+            {{ user.get_full_name }}
           </li>
         </a>
       {% endfor %}

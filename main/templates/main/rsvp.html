@@ -1,14 +1,65 @@
 {% extends 'base.html' %}
-{% block title %}Photos{% endblock %}
+{% block title %}RSVP{% endblock %}
 {% block content %}
+
 <div class="jumbotron text-center">
   <h1>RSVP</h1>
   <p>See who's coming and add your RSVP(s) here!</p>
 </div>
 
 <div class="row">
-  <div class="col-xs-12 col-md-10 col-md-offset-1 text-center">
-    <em>Coming soon!</em>
+  <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+    <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.name }}
+      <br>
+      {{ form.rsvp }} <strong>I'll be there!</strong> <em>(Uncheck if you can't make it.)</em>
+      <br><br>
+      {{ form.bringing }}
+      <br>
+      <button class="btn btn-lg btn-primary" type="submit" name="form" value="post-form">Submit RSVP</button>
+      <a href="{% url 'main:rsvp' %}">
+        <button class="btn btn-lg btn-danger">Cancel</button>
+      </a>
+    </form>
+    <br><br><br>
+  </div>
+
+
+    <div class="col-xs-6">
+      <h3>Who All's Coming</h3>
+      {% for person in people %}
+      {% if person.rsvp %}
+       <ul>
+         <li>
+          <span>{{ person.name }}</span>
+            {% if person.bringing %}
+             (<strong>Bringing:</strong> {{ person.bringing }})
+            {% endif %}
+         </li>
+       </ul>
+       {% endif %}
+       {% endfor %}
+     </div>
+     <div class="col-xs-6">
+      <h3>Can't Make It :(</h3>
+      {% for person in people %}
+      {% if person.rsvp != True %}
+      <ul>
+        <li>
+          <span>{{ person.name }}</span>
+            {% if person.bringing %}
+             (<strong>Bringing:</strong> {{ person.bringing }})
+            {% endif %}
+        </li>
+      </ul>
+      {% endif %}
+      {% endfor %}
+     </div>
+
   </div><!-- .col -->
 </div><!-- .row -->
+
 {% endblock %}

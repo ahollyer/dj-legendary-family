@@ -4,8 +4,8 @@ from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.views.generic import TemplateView, RedirectView
-from main.forms import PostForm, CommentForm, LikeForm
-from main.models import Post, Comment, Like
+from main.forms import PostForm, CommentForm, LikeForm, RsvpForm
+from main.models import Post, Comment, Like, Rsvp
 
 def home(request):
     return TemplateResponse(request, 'main/home.html', {})
@@ -27,9 +27,22 @@ def get_comments(request, post_id):
     # To create api and render on front end:
     # return http.JsonResponse({'comments': comments})
 
-@login_required
-def rsvp(request):
-    return TemplateResponse(request, 'main/rsvp.html', {})
+class RsvpView(TemplateView):
+    template_name = 'main/rsvp.html'
+
+    def get(self, request):
+        form = RsvpForm()
+        people = Rsvp.objects.all()
+        context = {'form': form, 'people': people}
+        return TemplateResponse(request, self.template_name, context)
+
+    def post(self, request):
+        form = RsvpForm(request.POST)
+
+        if form.is_valid():
+            submission = form.save()
+            return redirect('./')
+
 
 class MainView(TemplateView):
     template_name = 'main/main.html'
