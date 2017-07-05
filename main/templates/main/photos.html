@@ -7,8 +7,52 @@
 </div>
 
 <div class="row">
-  <div class="col-xs-12 col-md-10 col-md-offset-1 text-center">
-    <em>Coming soon!</em>
-  </div><!-- .col -->
+  <div class="col-xs-12 text-center">
+    <button id="upload-button" class="btn btn-lg btn-default" onClick="showForm()">Click here to upload photos!</button>
+  </div>
+
+  <div id="upload-form" class="col-xs-12 col-s-10 col-s-offset-1 col-md-6 col-md-offset-3">
+    <h2 class="text-center">Add a Picture</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group">
+        <label>Image:</label>
+        {{ photoform.image }}
+      </div>
+      <br><br>
+      <h3>Optional Information</h3>
+      <div class="form-group">
+        <label>Description:</label>
+        {{ photoform.description }}
+      </div>
+      <div class="form-group">
+        <label>Location:</label>
+        {{ photoform.location }}
+        <p class="help-block"><small><em>Ex. Albany, NY or Disneyland or Lake Texoma</em></small></p>
+      </div>
+      <div class="form-group">
+        <label>Date Taken:</label>
+        {{ photoform.date_taken }}
+        <p class="help-block"><small><em>MM/DD/YYYY</em></small></p>
+      </div>
+      <button class="btn btn-lg btn-primary" type="submit" name="submit" value="photo-form">Upload Photo</button>
+      <a href="{% url 'main:photos' %}">
+        <button class="btn btn-lg btn-danger" name="cancel">Cancel</button>
+      </a>
+    </form>
+  </div><!-- #upload-photo -->
 </div><!-- .row -->
+
+<script>
+  document.getElementById('upload-form').style.display = 'none';
+
+  function showForm() {
+    let form = document.getElementById('upload-form');
+    let button = document.getElementById('upload-button');
+
+    form.style.display = '';
+    button.style.display = 'none';
+  }
+
+</script>
 {% endblock %}

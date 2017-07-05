@@ -4,8 +4,9 @@ from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.views.generic import TemplateView, RedirectView
-from main.forms import PostForm, CommentForm, LikeForm, RsvpForm
-from main.models import Post, Comment, Like, Rsvp
+from main.forms import (PostForm, CommentForm, LikeForm, RsvpForm,
+                        PhotoForm, PhotoTagForm, PhotoLikeForm)
+from main.models import Post, Comment, Like, Rsvp, Photo
 
 def home(request):
     return TemplateResponse(request, 'main/home.html', {})
@@ -18,14 +19,66 @@ def about(request):
     return TemplateResponse(request, 'main/about.html', {})
 
 @login_required
-def photos(request):
-    return TemplateResponse(request, 'main/photos.html', {})
-
-@login_required
 def get_comments(request, post_id):
     return TemplateResponse(request, 'main/comments.html', {'comments': comments})
     # To create api and render on front end:
     # return http.JsonResponse({'comments': comments})
+
+class PhotoView(TemplateView):
+    template_name = 'main/photos.html'
+
+    def get(self, request):
+        photo_form = PhotoForm()
+        tag_form = PhotoTagForm()
+        like_form = PhotoLikeForm()
+        photos = Photo.objects.order_by('-uploaded')
+        users = User.objects.all()
+        context = {
+            'photoform': photo_form,
+            'tagform': tag_form,
+            'likeform': like_form,
+            'users': users
+        }
+        return TemplateResponse(request, self.template_name, context)
+
+    def post(self, request):
+        form_type = request.POST.get('form', '')
+        like_form = PhotoLikeForm()
+        photo_form = PhotoForm()
+        tag_form = PhotoTagForm()
+
+        if form_type == 'like-form':
+            like_form = PhotoLikeForm(request.POST)
+            if like_form.is_valid():
+                like = like_form.save(commit=False)
+                like.user = request.user
+                like.photo_id = request.POST.get('photo_id')
+                like.save()
+                return redirect('./')
+
+        elif form_type == 'photo-form':
+            post_form = PostForm(request.POST)
+            if post_form.is_valid():
+                post = post_form.save(commit=False)
+                post.user = request.user
+                post.save()
+                return redirect('./')
+
+        elif form_type == 'tag-form':
+            tag_form = PhotoTagForm(request.POST)
+            if tag_form.is_valid():
+                tag = tag_form.save(commit=False)
+                tag.user = request.user
+                tag.save()
+                return redirect('./')
+
+        context = {
+            'likeform': like_form,
+            'photoform': photo_form,
+            'tagform': tag_form
+        }
+        return TemplateResponse(request, self.template_name, context)
+
 
 class RsvpView(TemplateView):
     template_name = 'main/rsvp.html'

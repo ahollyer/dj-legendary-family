@@ -1,5 +1,6 @@
 from django import forms
-from main.models import Post, Comment, Like, Rsvp
+from main.models import (Post, Comment, Like, Rsvp,
+                        Photo, PhotoTag, PhotoLike)
 
 ################### POSTS/COMMENTS ################
 class PostForm(forms.ModelForm):
@@ -52,3 +53,35 @@ class RsvpForm(forms.ModelForm):
     class Meta:
         model = Rsvp
         fields = ('name', 'rsvp', 'bringing')
+
+
+#################### FAMILY PHOTOS ########################
+class PhotoForm(forms.ModelForm):
+    image = forms.ImageField(required=False)
+    date_taken = forms.DateField(required=False)
+    location = forms.CharField(required=False,
+    widget=forms.TextInput(
+        attrs = {
+            'class': 'form-inline',
+        }
+    ))
+    description = forms.CharField(required=False, widget=forms.Textarea(
+        attrs = {
+            'class': 'form-control',
+            'placeholder': 'Enter a brief description to be displayed with your photo.',
+        }
+    ))
+
+    class Meta:
+        model = Photo
+        fields = ('image', 'date_taken', 'location', 'description')
+
+class PhotoLikeForm(forms.ModelForm):
+    class Meta:
+        model = Photo
+        exclude = ('user',)
+
+class PhotoTagForm(forms.ModelForm):
+    class Meta:
+        model = Photo
+        fields = ('user',)

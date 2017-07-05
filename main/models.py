@@ -33,6 +33,9 @@ class Rsvp(models.Model):
     rsvp = models.BooleanField(default=True)
     bringing = models.CharField(max_length=500)
 
+    def __str__(self):
+        return self.name
+
 
 ################## FAMILY ARCHIVE ###################
 class Photo(models.Model):
@@ -44,13 +47,18 @@ class Photo(models.Model):
     description = models.CharField(max_length=1000)
 
     def __str__(self):
-        return self.uploaded
+        return self.description
 
-class PhotoTags(models.Model):
+class PhotoTag(models.Model):
     photo = models.ForeignKey(Photo)
     user = models.ForeignKey(User)
 
-class PhotoLikes(models.Model):
+    def __str__(self):
+        return self.user
+
+class PhotoLike(models.Model):
     like = models.BooleanField(default=True)
     user = models.ForeignKey(User)
     photo = models.ForeignKey(Photo, related_name='photo_likes')
+
+    
