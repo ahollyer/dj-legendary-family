@@ -25,7 +25,9 @@
 		{% for post in posts %}
   		<div class="col-xs-3 col-md-1 col-md-offset-1 posts">
         {% if post.user.userprofile.image %}
+        <a href="{% url 'accounts:view_profile_pk' pk=post.user.pk %}">
   			  <img class="img-responsive" src="{{ post.user.userprofile.image.url }}" alt="{{ post.user.first_name }}'s profile pic'">
+        </a>
         {% endif %}
   		</div>
   		<div class="col-xs-7 col-md-10 posts">

@@ -37,6 +37,7 @@ class PhotoView(TemplateView):
             'photoform': photo_form,
             'tagform': tag_form,
             'likeform': like_form,
+            'photos': photos,
             'users': users
         }
         return TemplateResponse(request, self.template_name, context)
@@ -57,11 +58,12 @@ class PhotoView(TemplateView):
                 return redirect('./')
 
         elif form_type == 'photo-form':
-            post_form = PostForm(request.POST)
-            if post_form.is_valid():
-                post = post_form.save(commit=False)
-                post.user = request.user
-                post.save()
+            print("entered photo block")
+            photo_form = PhotoForm(request.POST, request.FILES)
+            if photo_form.is_valid():
+                photo = photo_form.save(commit=False)
+                photo.user = request.user
+                photo.save()
                 return redirect('./')
 
         elif form_type == 'tag-form':
@@ -75,7 +77,7 @@ class PhotoView(TemplateView):
         context = {
             'likeform': like_form,
             'photoform': photo_form,
-            'tagform': tag_form
+            'tagform': tag_form,
         }
         return TemplateResponse(request, self.template_name, context)
 
@@ -105,7 +107,12 @@ class MainView(TemplateView):
         like = LikeForm()
         posts = Post.objects.order_by('-created')
         users = User.objects.all()
-        context = {'postform': form, 'likeform': like, 'posts': posts, 'users': users}
+        context = {
+            'postform': form,
+            'likeform': like,
+            'posts': posts,
+            'users': users
+        }
         return TemplateResponse(request, self.template_name, context)
 
     def post(self, request):
@@ -116,10 +123,10 @@ class MainView(TemplateView):
         if form_type == 'like-form':
             like_form = LikeForm(request.POST)
             if like_form.is_valid():
-                post = like_form.save(commit=False)
-                post.user = request.user
-                post.post_id = request.POST.get('post_id')
-                post.save()
+                like = like_form.save(commit=False)
+                like.user = request.user
+                like.post_id = request.POST.get('post_id')
+                like.save()
                 return redirect('./')
 
         elif form_type == 'post-form':

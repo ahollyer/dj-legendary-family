@@ -6,6 +6,7 @@
   <p>View and save family photos. Any photos you upload will be visible to all family members who have a Legendary.family account.</p>
 </div>
 
+<!-- PHOTO UPLOAD FORM -->
 <div class="row">
   <div class="col-xs-12 text-center">
     <button id="upload-button" class="btn btn-lg btn-default" onClick="showForm()">Coming soon!</button>
@@ -35,12 +36,25 @@
         {{ photoform.date_taken }}
         <p class="help-block"><small><em>MM/DD/YYYY</em></small></p>
       </div>
-      <button class="btn btn-lg btn-primary" type="submit" name="submit" value="photo-form">Upload Photo</button>
+      <button class="btn btn-lg btn-primary" type="submit" name="form" value="photo-form">Upload Photo</button>
       <a href="{% url 'main:photos' %}">
         <button class="btn btn-lg btn-danger" name="cancel">Cancel</button>
       </a>
     </form>
   </div><!-- #upload-photo -->
+</div><!-- .row -->
+
+
+<!-- DISPLAY PHOTOS -->
+<div class="row">
+  <div class="col-xs-12">
+    {% for photo in photos %}
+      <div class="col-xs-6 col-md-4">
+          <img class="img-responsive" src="{{ photo.image.url }}" alt="{{ photo.description }}">
+        <p class="small">Uploaded by <a href="{% url 'accounts:view_profile_pk' pk=photo.user.pk %}">{{ photo.user.get_full_name }}</a> on {{ photo.uploaded|date:"SHORT_DATE_FORMAT" }}</p>
+      </div><!-- .col -->
+    {% endfor %}
+  </div><!-- .col -->
 </div><!-- .row -->
 
 <script>
