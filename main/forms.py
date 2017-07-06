@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from main.models import (Post, Comment, Like, Rsvp,
-                        Photo, PhotoTag, PhotoLike)
+                        Photo, PhotoLike)
 
 ################### POSTS/COMMENTS ################
 class PostForm(forms.ModelForm):
@@ -77,13 +77,13 @@ class PhotoForm(forms.ModelForm):
     class Meta:
         model = Photo
         widgets = {
-            'tags': forms.CheckboxSelectMultiple(),
+            'tagz': forms.CheckboxSelectMultiple(),
         }
-        fields = ('image', 'date_taken', 'location', 'description', 'tags')
+        fields = ('image', 'date_taken', 'location', 'description', 'tagz')
 
     def __init__(self, *args, **kwargs):
         super(PhotoForm, self).__init__(*args, **kwargs)
-        self.fields['tags'].queryset = User.objects.order_by('username')
+        self.fields['tagz'].queryset = User.objects.order_by('username')
 
 class PhotoLikeForm(forms.ModelForm):
     like = forms.BooleanField(widget=forms.HiddenInput(), initial=True)

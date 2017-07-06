@@ -107,13 +107,17 @@ class PhotoView(TemplateView):
                 return redirect('./')
 
         elif form_type == 'photo-form':
+            print(request.POST, request.FILES)
             photo_form = PhotoForm(request.POST, request.FILES)
             if photo_form.is_valid():
+                print("VALID")
                 photo = photo_form.save(commit=False)
                 photo.user = request.user
                 photo.save()
+                photo_form.save_m2m()
                 return redirect('./')
-
+            else:
+                print(photo_form.errors)
 
         photos = Photo.objects.order_by('-uploaded')
         users = User.objects.all()

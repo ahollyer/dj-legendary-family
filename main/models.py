@@ -37,28 +37,17 @@ class Rsvp(models.Model):
 class Photo(models.Model):
     user = models.ForeignKey(User)
     uploaded = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to='archive', blank=True)
+    image = models.ImageField(upload_to='archive/%Y-%m', blank=True)
     date_taken = models.DateField(null=True, blank=True)
     location = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
-    tags = models.ManyToManyField(User, through='PhotoTag', related_name="+")
+    tagz = models.ManyToManyField(User, blank=True, related_name="+")
 
     def __str__(self):
         return self.description
 
     def all_comments (self):
         return self.photo_comments.all()
-
-class PhotoTag(models.Model):
-    photo = models.ForeignKey(Photo, related_name="+")
-    user = models.ForeignKey(User, related_name="+")
-
-    class Meta:
-        ordering = ('user__first_name',)
-        auto_created = True
-
-    def __str__(self):
-        return self.user.first_name + ' ' + self.user.last_name
 
 class PhotoLike(models.Model):
     like = models.BooleanField(default=True)

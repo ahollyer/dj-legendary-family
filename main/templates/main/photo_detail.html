@@ -38,8 +38,8 @@
     {% endif %}
     <strong>Who's in this photo?</strong>
         <ul class="tiny">
-        {% if photo.tags %}
-          {% for tag in photo.tags.all %}
+        {% if photo.tagz.all.count %}
+          {% for tag in photo.tagz.all %}
             <li>{{ tag }}</li>
           {% endfor %}
         </ul>
