@@ -77,9 +77,11 @@ class PhotoForm(forms.ModelForm):
         fields = ('image', 'date_taken', 'location', 'description')
 
 class PhotoLikeForm(forms.ModelForm):
+    like = forms.BooleanField(widget=forms.HiddenInput(), initial=True)
+
     class Meta:
-        model = Photo
-        exclude = ('user',)
+        model = PhotoLike
+        fields = ('like',)
 
 class PhotoTagForm(forms.ModelForm):
     class Meta:

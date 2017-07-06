@@ -12,16 +12,6 @@ class Post(models.Model):
     def __str__(self):
         return self.post
 
-class Comment(models.Model):
-    text = models.CharField(max_length=1000)
-    user = models.ForeignKey(User)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    post = models.ForeignKey(Post, related_name='comments')
-
-    def __str__(self):
-        return self.text
-
 class Like(models.Model):
     like = models.BooleanField(default=True)
     user = models.ForeignKey(User)
@@ -61,4 +51,15 @@ class PhotoLike(models.Model):
     user = models.ForeignKey(User)
     photo = models.ForeignKey(Photo, related_name='photo_likes')
 
-    
+
+################ COMMENTS FOR POSTS/PHOTOS #################
+class Comment(models.Model):
+    text = models.CharField(max_length=1000)
+    user = models.ForeignKey(User)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    post = models.ForeignKey(Post, related_name='comments', null=True, blank=True)
+    photo = models.ForeignKey(Photo, related_name='photo_comments', null=True, blank=True)
+
+    def __str__(self):
+        return self.text

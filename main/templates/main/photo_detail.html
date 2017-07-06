@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Family Photos{% endblock %}
+{% block content %}
+{% load static %}
+<div class="jumbotron text-center">
+  <h1>View Photo</h1>
+  <p>This picture was uploaded by <a href="{% url 'accounts:view_profile_pk' pk=photo.user.pk %}">{{ photo.user.first_name }}</a> on {{ photo.uploaded }}</p>
+</div>
+
+<a name="comment-form"></a>
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-offset-1 text-center">
+    <img src="{{ photo.image.url }}" alt="{{ photo.description }}">
+    <br><br>
+  </div>
+
+  <!-- Photo Description and Comments -->
+    <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+      {% if photo.description %}
+        <p>{{ photo.description }}</p>
+      {% else %}
+        <p><em>This photo has no description yet.</em> <a href="{% url 'main:edit_photo' photo.id %}">(Add one!)</a></p>
+      {% endif %}
+      <p class="small">
+        This picture was taken on
+        {% if photo.date_taken %}
+          {{ photo.date_taken }}
+        {% else %}
+          <em>unknown</em> (add date taken)
+        {% endif %}
+        at
+        {% if photo.location %}
+          {{ photo.location }}.
+        {% else %}
+          <em>unknown</em> (add location).
+        {% endif %}
+      </p>
+      <br><br>
+    </div>
+
+    {% include 'main/comments.html' %}
+
+    <!-- Comment Form -->
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <br>
+      <form action="./" method="POST">
+        {% csrf_token %}
+        {{ form.text }}
+        <br>
+        <button class="btn btn-lg btn-primary" type="submit">Add Comment</button>
+        <a href="{% url 'main:main' %}">
+          <button class="btn btn-lg btn-danger">Cancel</button>
+        </a>
+      </form>
+      <br><br>
+    </div>
+
+    <div class="col-xs-12">
+      <p class="text-center">
+        <a href="{% url 'main:edit_photo' photo.id %}">Add/Edit Information for This Photo</a> | <a href="{% url 'main:photos' %}">Back to Family Archive</a>
+      </p>
+    </div>
+  </div><!-- .col -->
+</div><!-- .row -->
+{% endblock %}

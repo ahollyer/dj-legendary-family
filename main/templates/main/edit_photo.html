@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Edit Photo Details{% endblock %}
+{% block content %}
+<div class="jumbotron text-center">
+  <h1>Add/Edit Photo Details</h1>
+  <p>Use this form to update photo information.</p>
+</div>
+
+<div class="row">
+  <div class="col-xs-4 col-xs-offset-2 col-md-2 col-md-offset-2">
+    <img class="img-responsive" src="{{ photo.image.url }}" alt="{{ photo.description }}">
+  </div>
+<div class="col-xs-12 col-md-8 col-md-offset-2">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label>Image:</label>
+      {{ photoform.image }}
+    </div>
+    <div class="form-group">
+      <label>Description:</label>
+      {{ photoform.description }}
+    </div>
+    <div class="form-group">
+      <label>Location:</label>
+      {{ photoform.location }}
+      <p class="help-block"><small><em>Ex. Albany, NY or Disneyland or Lake Texoma</em></small></p>
+    </div>
+    <div class="form-group">
+      <label>Date Taken:</label>
+      {{ photoform.date_taken }}
+      <p class="help-block"><small><em>MM/DD/YYYY</em></small></p>
+    </div>
+    <button class="btn btn-lg btn-primary" type="submit" name="form" value="photo-form">Update Photo</button>
+    <a href="/">
+      <button class="btn btn-lg btn-danger">Cancel</button>
+    </a>
+  </form>
+</div><!-- .col -->
+</div><!-- .row -->
+{% endblock %}
