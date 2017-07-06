@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+############ Monkey Patch--fix this at some point #############
+User.__str__ = lambda self: self.get_full_name()
+
 ############### POSTS/COMMENTS ##################
 class Post(models.Model):
     post = models.CharField(max_length=1000)
@@ -11,6 +14,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.post
+
+    def all_comments (self):
+        return self.comments.all()
 
 class Like(models.Model):
     like = models.BooleanField(default=True)
@@ -35,16 +41,24 @@ class Photo(models.Model):
     date_taken = models.DateField(null=True, blank=True)
     location = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
+    tags = models.ManyToManyField(User, through='PhotoTag', related_name="+")
 
     def __str__(self):
         return self.description
 
+    def all_comments (self):
+        return self.photo_comments.all()
+
 class PhotoTag(models.Model):
-    photo = models.ForeignKey(Photo)
-    user = models.ForeignKey(User)
+    photo = models.ForeignKey(Photo, related_name="+")
+    user = models.ForeignKey(User, related_name="+")
+
+    class Meta:
+        ordering = ('user__first_name',)
+        auto_created = True
 
     def __str__(self):
-        return self.user
+        return self.user.first_name + ' ' + self.user.last_name
 
 class PhotoLike(models.Model):
     like = models.BooleanField(default=True)

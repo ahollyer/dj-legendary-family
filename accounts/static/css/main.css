@@ -40,6 +40,19 @@ h3 {
 	font-weight: bold;
 }
 
+form ul {
+	list-style: none;
+}
+
+.tiny {
+	margin-top: 2px;
+	font-size: 14px;
+}
+
+.jumbotron .tiny {
+	font-size: 14px;
+}
+
 /* MAIN PAGE - NEWS FEED */
 div .posts {
 	margin-bottom: 20px;
@@ -47,6 +60,7 @@ div .posts {
 .serif {
 	font-family: 'Libre Baskerville', serif;
 }
+
 
 /*Devicons size*/
 .technologies-list {

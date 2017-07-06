@@ -4,7 +4,7 @@
 <div class="jumbotron text-center">
   <h1>Family Archive</h1>
   <p>View and save family photos. Any pictures you upload will be visible to all family members.</p>
-  <p><em>Coming Soon: Tag family members and search by location, photo date, and more. :)</em></p>
+  <p><em>Coming Soon: Filter photos by who is tagged, and search photos by location, date taken, and more. :)</em></p>
 </div>
 
 <!-- PHOTO UPLOAD FORM -->
@@ -37,6 +37,10 @@
         {{ photoform.date_taken }}
         <p class="help-block"><small><em>MM/DD/YYYY</em></small></p>
       </div>
+      <div class="form-group">
+        <label>Tag People:</label>
+        {{ photoform.tags }}
+      </div>
       <button class="btn btn-lg btn-primary" type="submit" name="form" value="photo-form">Upload Photo</button>
       <a href="/">
         <button class="btn btn-lg btn-danger">Cancel</button>
@@ -54,13 +58,6 @@
         <a href="{% url 'main:photo_detail' pk=photo.pk %}">
           <img class="img-responsive" src="{{ photo.image.url }}" alt="{{ photo.description }}">
         </a>
-          <!-- Like Button -->
-          <form method="POST">
-            {% csrf_token %}
-            {{ likeform.like }}
-            <input type="hidden" name="photo_id" value="{{ photo.id }}">
-            <button class="btn btn-sm btn-default" type="submit" name="form" value="like-form"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Like ({{ photo.photo_likes.count }})</button>
-          </form>
           <!-- Uploaded By -->
           <p class="small">
             Uploaded by <a href="{% url 'accounts:view_profile_pk' pk=photo.user.pk %}">{{ photo.user.get_full_name }}</a> on {{ photo.uploaded|date:"SHORT_DATE_FORMAT" }}

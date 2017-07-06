@@ -39,7 +39,7 @@
       <p class="small">{{ post.updated }}</p>
       <br><br>
     </div>
-    {% include 'main/comments.html' %}
+    {% include 'main/comments.html' with all_comments=post.all_comments %}
     <div class="col-xs-12">
       <p><a href="#comment-form">Add A Comment</a></p>
       <a href="{% url 'main:main' %}"><p class="text-center">Back to news feed</p></a>

@@ -5,7 +5,7 @@ from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.views.generic import TemplateView, RedirectView
 from main.forms import (PostForm, CommentForm, LikeForm, RsvpForm,
-                        PhotoForm, PhotoTagForm, PhotoLikeForm)
+                        PhotoForm, PhotoLikeForm)
 from main.models import Post, Comment, Like, Rsvp, Photo
 
 def home(request):
@@ -81,13 +81,11 @@ class PhotoView(TemplateView):
 
     def get(self, request):
         photo_form = PhotoForm()
-        tag_form = PhotoTagForm()
         like_form = PhotoLikeForm()
         photos = Photo.objects.order_by('-uploaded')
         users = User.objects.all()
         context = {
             'photoform': photo_form,
-            'tagform': tag_form,
             'likeform': like_form,
             'photos': photos,
             'users': users
@@ -98,7 +96,6 @@ class PhotoView(TemplateView):
         form_type = request.POST.get('form', '')
         like_form = PhotoLikeForm()
         photo_form = PhotoForm()
-        tag_form = PhotoTagForm()
 
         if form_type == 'like-form':
             like_form = PhotoLikeForm(request.POST)
@@ -117,20 +114,12 @@ class PhotoView(TemplateView):
                 photo.save()
                 return redirect('./')
 
-        elif form_type == 'tag-form':
-            tag_form = PhotoTagForm(request.POST)
-            if tag_form.is_valid():
-                tag = tag_form.save(commit=False)
-                tag.user = request.user
-                tag.save()
-                return redirect('./')
 
         photos = Photo.objects.order_by('-uploaded')
         users = User.objects.all()
         context = {
             'likeform': like_form,
             'photoform': photo_form,
-            'tagform': tag_form,
             'photos': photos,
             'users': users
         }
@@ -167,6 +156,7 @@ def edit_photo(request, photo_id):
     if request.method == 'POST':
         photoform = PhotoForm(request.POST, instance=photo)
         if photoform.is_valid():
+
             photoform.save()
         return redirect(reverse('main:photos'))
     else:
