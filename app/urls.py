@@ -6,6 +6,8 @@ from app import views
 from main import views
 
 urlpatterns = [
+    # required for password reset view
+    url(r'^', include('django.contrib.auth.urls')),
     url(r'^$', views.home_redirect, name='home_redirect'),
     url(r'^admin/', admin.site.urls),
     url(r'^account/', include('accounts.urls', namespace='accounts')),
