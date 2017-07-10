@@ -147,6 +147,6 @@ if SECRET_KEY != 'dev':
     AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
     AWS_S3_REGION_NAME = 'us-west-2'
     MEDIA_URL = 'http://s3-us-west-2.amazonaws.com/media.legendary.family/'
-
-# EMAIL_HOST = 'localhost'
-# EMAIL_PORT = 1025
+    EMAIL_BACKEND = 'django_ses.SESBackend'
+    AWS_SES_REGION_NAME = 'us-west-2'
+    AWS_SES_REGION_ENDPOINT = 'email.us-west-2.amazonaws.com'
