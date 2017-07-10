@@ -5,3 +5,4 @@ fabric3
 Pillow
 uwsgi
 whitenoise
+django-ses
