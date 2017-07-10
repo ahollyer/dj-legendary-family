@@ -56,7 +56,7 @@
     {% for photo in photos %}
       <div class="col-xs-6 col-md-3">
         <a href="{% url 'main:photo_detail' pk=photo.pk %}">
-          <img class="img-responsive" src="{{ photo.image.url }}" alt="{{ photo.description }}">
+          <img class="img-responsive" src="{{ photo.image.url|default_if_none:'#' }}" alt="{{ photo.description }}">
         </a>
           <!-- Uploaded By -->
           <p class="small">
