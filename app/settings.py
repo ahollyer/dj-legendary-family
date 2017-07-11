@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', 'dev')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 if SECRET_KEY == 'dev':
     DEBUG = True
 
@@ -147,6 +147,11 @@ if SECRET_KEY != 'dev':
     AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
     AWS_S3_REGION_NAME = 'us-west-2'
     MEDIA_URL = 'http://s3-us-west-2.amazonaws.com/media.legendary.family/'
+
     EMAIL_BACKEND = 'django_ses.SESBackend'
     AWS_SES_REGION_NAME = 'us-west-2'
     AWS_SES_REGION_ENDPOINT = 'email.us-west-2.amazonaws.com'
+    EMAIL_FROM = 'aspen.dollins@gmail.com'
+    EMAIL_HOST_USER = 'aspen.dollins@gmail.com'
+    DEFAULT_FROM_EMAIL = 'aspen.dollins@gmail.com'
+    SERVER_EMAIL = 'aspen.dollins@gmail.com'
